@@ -53,7 +53,7 @@
     }
     /* Hero Section */
     .hero {
-      background: url('https://via.placeholder.com/1200x600') no-repeat center center/cover;
+      background: url('https://picsum.photos/1200/600?random=1') no-repeat center center/cover;
       height: 600px;
       position: relative;
       color: #fff;
@@ -136,7 +136,6 @@
       color: #fff;
       background: #000;
     }
-    /* Container for text over the canvas */
     .art-content {
       position: relative;
       z-index: 2;
@@ -145,7 +144,6 @@
       justify-content: center;
       height: 100%;
     }
-    /* p5.js canvas container positioned as the background */
     #p5-container {
       position: absolute;
       top: 0;
@@ -161,6 +159,13 @@
       padding: 20px 0;
       text-align: center;
     }
+
+
+.pad {
+
+    padding-bottom: 40px;
+}
+
     /* Responsive */
     @media(max-width: 768px) {
       .hero-content h1 {
@@ -176,6 +181,8 @@
         flex-direction: column;
         align-items: center;
       }
+
+  
     }
   </style>
   <!-- p5.js Library -->
@@ -226,17 +233,17 @@
       <h2>Our Services</h2>
       <div class="service-items">
         <div class="service-item">
-          <img src="https://via.placeholder.com/150" alt="Web Design">
+          <img src="https://picsum.photos/150/150?random=2" alt="Web Design">
           <h3>Web Design</h3>
           <p>Stunning, responsive designs that engage and convert.</p>
         </div>
         <div class="service-item">
-          <img src="https://via.placeholder.com/150" alt="Digital Marketing">
+          <img src="https://picsum.photos/150/150?random=3" alt="Digital Marketing">
           <h3>Digital Marketing</h3>
           <p>Strategies to boost your online presence and drive results.</p>
         </div>
         <div class="service-item">
-          <img src="https://via.placeholder.com/150" alt="Branding">
+          <img src="https://picsum.photos/150/150?random=4" alt="Branding">
           <h3>Branding</h3>
           <p>Building a unique identity that resonates with your audience.</p>
         </div>
@@ -253,6 +260,7 @@
     </div>
   </section>
   
+
   <!-- Portfolio Section -->
   <section class="portfolio" id="portfolio">
     <div class="container">
@@ -262,15 +270,17 @@
     </div>
   </section>
   
+
   <!-- Contact Section -->
   <section class="contact" id="contact">
     <div class="container">
       <h2>Get In Touch</h2>
-      <p>Ready to spark your digital journey? Contact us today and let's create something amazing together.</p>
+      <p class="pad">Ready to spark your digital journey? Contact us today and let's create something amazing together.</p>
       <a href="mailto:info@mikespark.com" class="btn">Contact Us</a>
     </div>
   </section>
-  
+
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -285,7 +295,6 @@
       const numNodes = 50;
       
       p.setup = () => {
-        // Get container dimensions
         const container = document.getElementById("p5-container");
         const w = container.offsetWidth;
         const h = container.offsetHeight;
@@ -306,12 +315,9 @@
         for (let i = 0; i < nodes.length; i++) {
           let node = nodes[i];
           node.pos.add(node.vel);
-          // Bounce off edges
           if (node.pos.x < 0 || node.pos.x > p.width) node.vel.x *= -1;
           if (node.pos.y < 0 || node.pos.y > p.height) node.vel.y *= -1;
           p.ellipse(node.pos.x, node.pos.y, 5, 5);
-          
-          // Draw connections
           for (let j = i + 1; j < nodes.length; j++) {
             let other = nodes[j];
             let d = p.dist(node.pos.x, node.pos.y, other.pos.x, other.pos.y);

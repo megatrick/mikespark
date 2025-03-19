@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MikeSpark - Digital Agency</title>
+  <style>
+    /* Reset styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo h2 {
+      display: inline;
+      font-size: 1.8em;
+      color: #333;
+    }
+    nav {
+      float: right;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 20px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ff6600;
+    }
+    /* Hero Section */
+    .hero {
+      background: url('https://via.placeholder.com/1200x600') no-repeat center center/cover;
+      height: 600px;
+      position: relative;
+      color: #fff;
+    }
+    .hero-overlay {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-content h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      background: #ff6600;
+      color: #fff;
+      padding: 15px 30px;
+      text-decoration: none;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #e65c00;
+    }
+    /* Sections */
+    section {
+      padding: 60px 0;
+    }
+    .about, .services, .portfolio, .contact {
+      text-align: center;
+    }
+    .about h2, .services h2, .portfolio h2, .contact h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .services .service-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 40px;
+    }
+    .services .service-item {
+      flex: 1 1 250px;
+      max-width: 300px;
+      padding: 20px;
+    }
+    .services .service-item img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    /* Animated Art Section */
+    .animated-art {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+      background: #000;
+    }
+    /* Container for text over the canvas */
+    .art-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+    /* p5.js canvas container positioned as the background */
+    #p5-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    /* Responsive */
+    @media(max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5em;
+      }
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li {
+        margin: 10px 0;
+      }
+      .services .service-items {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+  <!-- p5.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h2>MikeSpark</h2>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#animated-art">Art</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div style="clear: both;"></div>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Ignite Your Digital Presence</h1>
+      <p>At MikeSpark, we create innovative digital solutions to help your business stand out and grow.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>MikeSpark is a full-service digital agency committed to delivering cutting-edge digital strategies and creative designs. Our team is passionate about turning your ideas into dynamic digital experiences.</p>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="service-items">
+        <div class="service-item">
+          <img src="https://via.placeholder.com/150" alt="Web Design">
+          <h3>Web Design</h3>
+          <p>Stunning, responsive designs that engage and convert.</p>
+        </div>
+        <div class="service-item">
+          <img src="https://via.placeholder.com/150" alt="Digital Marketing">
+          <h3>Digital Marketing</h3>
+          <p>Strategies to boost your online presence and drive results.</p>
+        </div>
+        <div class="service-item">
+          <img src="https://via.placeholder.com/150" alt="Branding">
+          <h3>Branding</h3>
+          <p>Building a unique identity that resonates with your audience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Animated Art Section with Background Canvas -->
+  <section class="animated-art" id="animated-art">
+    <div id="p5-container"></div>
+    <div class="container art-content">
+      <h2>Animated Art</h2>
+      <p>Experience our dynamic network graphic powered by p5.js as an immersive background.</p>
+    </div>
+  </section>
+  
+  <!-- Portfolio Section -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <h2>Our Work</h2>
+      <p>Take a look at some of our recent projects that showcase our expertise and creativity.</p>
+      <!-- Add portfolio items here -->
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <p>Ready to spark your digital journey? Contact us today and let's create something amazing together.</p>
+      <a href="mailto:info@mikespark.com" class="btn">Contact Us</a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MikeSpark. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- p5.js Sketch for Animated Network Graphic as Background -->
+  <script>
+    const sketch = (p) => {
+      let nodes = [];
+      const numNodes = 50;
+      
+      p.setup = () => {
+        // Get container dimensions
+        const container = document.getElementById("p5-container");
+        const w = container.offsetWidth;
+        const h = container.offsetHeight;
+        let canvas = p.createCanvas(w, h);
+        canvas.parent("p5-container");
+        for (let i = 0; i < numNodes; i++) {
+          nodes.push({
+            pos: p.createVector(p.random(p.width), p.random(p.height)),
+            vel: p.createVector(p.random(-1, 1), p.random(-1, 1))
+          });
+        }
+      };
+      
+      p.draw = () => {
+        p.background(30, 30, 30);
+        p.stroke(200);
+        p.fill(200);
+        for (let i = 0; i < nodes.length; i++) {
+          let node = nodes[i];
+          node.pos.add(node.vel);
+          // Bounce off edges
+          if (node.pos.x < 0 || node.pos.x > p.width) node.vel.x *= -1;
+          if (node.pos.y < 0 || node.pos.y > p.height) node.vel.y *= -1;
+          p.ellipse(node.pos.x, node.pos.y, 5, 5);
+          
+          // Draw connections
+          for (let j = i + 1; j < nodes.length; j++) {
+            let other = nodes[j];
+            let d = p.dist(node.pos.x, node.pos.y, other.pos.x, other.pos.y);
+            if (d < 100) {
+              p.stroke(200, p.map(d, 0, 100, 255, 0));
+              p.line(node.pos.x, node.pos.y, other.pos.x, other.pos.y);
+            }
+          }
+        }
+      };
+      
+      p.windowResized = () => {
+        const container = document.getElementById("p5-container");
+        const w = container.offsetWidth;
+        const h = container.offsetHeight;
+        p.resizeCanvas(w, h);
+      };
+    };
+    
+    new p5(sketch);
+  </script>
+</body>
+</html>
